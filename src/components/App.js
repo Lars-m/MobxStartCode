@@ -3,6 +3,12 @@ import '../styles/App.css';
 import "../data/todoStore";
 import TodoList from  "../components/TodoList";
 import store from "../data/todoStore";
+import people from '../data/peopleStore';
+
+store.todos[0].assignee = people[0];
+store.todos[1].assignee = people[1];
+
+
 
 class App extends Component {
   render() {
