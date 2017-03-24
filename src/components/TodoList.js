@@ -18,7 +18,9 @@ class TodoList extends React.Component {
            {store.pendingRequests > 0 ?  <img src={waitingSign} alt="logo" /> : null}
         </div>
         <button onClick={ this.onNewTodo }>New Todo</button>
-        <small> (double-click a todo to edit)</small>
+        <small> (double-click a todo to edit)</small><br/>
+        <button onClick={this.onRandomTodo}>Random Todo</button>
+
       </div>
     );
   }
@@ -26,5 +28,15 @@ class TodoList extends React.Component {
   onNewTodo = () => {
     this.props.store.addTodo(prompt('Enter a new todo:','Complete Todays Exercises'));
   }
+
+  onRandomTodo = () => {
+    let store = this.props.store;
+    store.pendingRequests++;
+    setTimeout(function () {
+      store.addTodo('Random Todo ' + Math.random());
+      store.pendingRequests--;
+    }, 2000);
+  }
+
 }
 export default TodoList;
