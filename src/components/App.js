@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
+import "../data/todoStore";
 
 class App extends Component {
   render() {
