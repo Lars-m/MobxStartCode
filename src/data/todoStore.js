@@ -1,4 +1,5 @@
-import mobx, { observable,computed} from "mobx";
+import mobx,{ observable,computed,action,useStrict } from "mobx";
+useStrict(true);
 
 class ObservableTodoStore {
   @observable todos = [];
@@ -20,13 +21,23 @@ class ObservableTodoStore {
     return `Next todo: "${this.todos[0].task}". ` +
       `Progress: ${this.completedTodosCount}/${this.todos.length}`;
   }
-
+  
+  @action
   addTodo(task) {
     this.todos.push({
       task: task,
       completed: false,
       assignee: null
     });
+  }
+
+   @action
+  toggleTodo(todo) {
+    todo.completed = !todo.completed;
+  }
+  @action
+  editTaskName(todo,task) {
+    todo.task = task;
   }
 }
 

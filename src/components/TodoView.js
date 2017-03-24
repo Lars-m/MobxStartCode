@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import todoStore from "../data/todoStore"
 
 @observer
 class TodoView extends React.Component {
@@ -23,12 +24,15 @@ class TodoView extends React.Component {
 
   onToggleCompleted = () => {
     const todo = this.props.todo;
-    todo.completed = !todo.completed;
+    todoStore.toggleTodo(todo);
   }
 
   onRename = () => {
     const todo = this.props.todo;
-    todo.task = prompt('Task name', todo.task) || todo.task;
+    let task = prompt('Task name', todo.task) || todo.task;
+    todoStore.editTaskName(todo,task);
   }
+
+
 }
 export default TodoView;
