@@ -1,5 +1,7 @@
-import mobx,{ observable,computed,action,useStrict } from "mobx";
+import mobx, { observable, computed, action, useStrict } from "mobx";
 useStrict(true);
+const URL = "http://localhost:7777/todos";
+
 
 class ObservableTodoStore {
   @observable todos = [];
@@ -21,7 +23,17 @@ class ObservableTodoStore {
     return `Next todo: "${this.todos[0].task}". ` +
       `Progress: ${this.completedTodosCount}/${this.todos.length}`;
   }
-  
+
+  @action
+  loadTodos() {
+    fetch(URL)
+      .then(res => res.json())
+      .then(action((todosArray) => {
+        this.todos.replace(todosArray);
+      }))
+  }
+
+
   @action
   addTodo(task) {
     this.todos.push({
@@ -31,12 +43,12 @@ class ObservableTodoStore {
     });
   }
 
-   @action
+  @action
   toggleTodo(todo) {
     todo.completed = !todo.completed;
   }
   @action
-  editTaskName(todo,task) {
+  editTaskName(todo, task) {
     todo.task = task;
   }
 }

@@ -3,6 +3,8 @@ import '../styles/App.css';
 import "../data/todoStore";
 import TodoList from  "../components/TodoList";
 import store from "../data/todoStore";
+setInterval(()=>store.loadTodos(),3000);
+
 
 
 
