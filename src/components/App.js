@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import "../data/todoStore";
+import TodoList from  "../components/TodoList";
+import store from "../data/todoStore";
 
 class App extends Component {
   render() {
@@ -9,9 +11,10 @@ class App extends Component {
         <div className="App-header">
           <h2>React/MobX Starter Code</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <div className="App-intro">
+          <TodoList store={store} />
+        </div>
+
       </div>
     );
   }
